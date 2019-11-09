@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects // Proto </h2>
+
+<p id="demo"></p>
+
+<script>
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
+
+Person.prototype.nationality = "English";
+
+var myFather = new Person("John", "Doe", 50, "blue");
+document.getElementById("demo").innerHTML =
+"The nationality of my father is " + myFather.nationality; 
+</script>
+
+</body>
+</html>
+
+//Create an empty constructor function
+function Person(){
+
+}
+//Add property name, age to the prototype property of the Person constructor function
+Person.prototype.name = "Ashwin" ;
+Person.prototype.age = 26;
+Person.prototype.sayName = function(){
+	console.log(this.name);
+}
+
+//Create an object using the Person constructor function
+var person1 = new Person();
+
+//Access the name property using the person object
+console.log(person1.name)// Output" Ashwin
+
+//Define the object specific properties inside the constructor
+function Human(name, age){
+	this.name = name,
+	this.age = age,
+	this.friends = ["Jadeja", "Vijay"]
+}
+//Define the shared properties and methods using the prototype
+Human.prototype.sayName = function(){
+	console.log(this.name);
+}
+//Create two objects using the Human constructor function
+var person1 = new Human("Virat", 31);
+var person2 = new Human("Sachin", 40);
+
+//Lets check if person1 and person2 have points to the same instance of the sayName function
+console.log(person1.sayName === person2.sayName) // true
+
+//Let's modify friends property and check
+person1.friends.push("Amit");
+
+console.log(person1.friends)// Output: "Jadeja, Vijay, Amit"
+console.log(person2.friends)//Output: "Jadeja, Vijay"
